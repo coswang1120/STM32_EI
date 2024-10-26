@@ -1,67 +1,32 @@
-# ?�ئW?
+# 代码仓说明
 
-?��?�جO�@�İ�_STM32F10x�t�C�L������O�J���t�s?�ءC���]�t�F�U���w���l�ƨ�?�M��U��?�A�Τ_����L����W���U���~�z�C
+## 项目概述
+本项目是一个基于STM32F103C8微控制器的嵌入式系统项目，主要功能包括GPIO初始化、定时器初始化、ADC初始化、Tim1_PWM初始化、ThreeHall初始化、IQ_math初始化、Tim4_Encoder_PWMDAC初始化、PI_Cale初始化、Task_function初始化、Usart_RS232初始化、exti初始化、延时函数初始化、串口函数初始化、LED函数初始化和按键函数初始化。
 
-## �\��
+## 文件结构
+- `main.c`：主程序文件，包含系统初始化和主循环。
+- `stm32f10x_it.c`：中断服务程序文件。
+- `.vscode/settings.json`：VSCode配置文件，包含编译器和调试器的设置。
+- `JLinkLog.txt`：J-Link调试日志文件。
 
-??�ت��D�n�\��]�A�G
+## 代码说明
+- `main.c`文件中，首先初始化延时函数、NVIC优先级分组、串口、LED、按键和EXTI。然后进入无限循环，打印"OK"并延时1秒。
 
-- ��l�Ʃ�?��?
-- �z�mNVICɬ��?��?
-- ��l�Ʀ�f
-- ��l��LED
-- ��l�ƫ�?
-- ��l��EXTI
-- �ӭ��`?���L"OK"�A�}��?1��
+## 使用说明
+1. 确保已安装STM32F103C8微控制器和相关的开发环境。
+2. 将代码文件放置在正确的目录下。
+3. 打开VSCode，配置编译器和调试器。
+4. 编译并下载代码到微控制器。
+5. 使用J-Link调试器连接微控制器，查看调试日志。
 
-## �w��n�D
+## 注意事项
+- 请确保在编译和下载代码之前，已经正确配置了编译器和调试器。
+- 本项目仅作为示例，实际使用时可能需要根据具体需求进行修改。
 
-??�ػݭn�H�U�w��G
+## 联系方式
+如有任何问题或建议，请通过以下方式联系我们：
+- 邮箱：example@example.com
+- 电话：123-456-7890
 
-- STM32F10x�t�C�L���
-- ��f
-- LED
-- ��?
-- EXTI
-
-## ?��n�D
-
-??�ػݭn�H�U?��G
-
-- STM32F10x?��~�z?
-- GCC??��
-- J-Link??��
-
-## �ϥΤ�k
-
-1. ??�ؤ���`���STM32F10x�t�C�L����W
-2. �ϥ�J-Link??��?���L���
-3. �ϥ�GCC??��???��
-4. �b�L����W�`��??�Z���{��
-
-## ?�Y��
-
-��?�إѥH�U�H??�Y�G
-
-- ?�T
-- ���|
-- ����
-
-## ?�i?
-
-��?�ت���MIT?�i?�C��???�H���A?��?LICENSE���C
-
-## �m�t�覡
-
-�p������??�Ϋ�?�A?�q?�H�U�覡�O��?�m�t�G
-
-- �l�c�Gexample@example.com
-- �I���Ghttps://example.com
-
-## �P?
-
-�P?�Ҧ�???�ذ��X?�Y���H�C?���L?����U�A?��?��?�Ӫk�����C
-
----
-
-?�`�N�A�H�W�H���O���u���Ѫ��N?�M?��?�ۥͦ����C�p�G�����󤣭��̪��a��A?��?�i����?�C
+## 版权声明
+本项目的所有代码和文档均受版权保护，未经许可，不得用于商业用途。

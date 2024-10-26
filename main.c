@@ -1,41 +1,41 @@
-#include "stm32f10x.h" // °üº¬STM32F10x±ê×¼ÍâÉè¿âÍ·ÎÄ¼ş
-#include "GPIO_int.h" // °üº¬GPIO³õÊ¼»¯Í·ÎÄ¼ş
-#include "Timer.h" // °üº¬¶¨Ê±Æ÷³õÊ¼»¯Í·ÎÄ¼ş
-#include "ADC_int.h" // °üº¬ADC³õÊ¼»¯Í·ÎÄ¼ş
-#include "Tim1_PWM.h" // °üº¬Tim1_PWM³õÊ¼»¯Í·ÎÄ¼ş
-#include "ThreeHall.h" // °üº¬ThreeHall³õÊ¼»¯Í·ÎÄ¼ş
-#include "IQ_math.h" // °üº¬IQ_math³õÊ¼»¯Í·ÎÄ¼ş
-#include "Tim4_Encoder_PWMDAC.h" // °üº¬Tim4_Encoder_PWMDAC³õÊ¼»¯Í·ÎÄ¼ş
-#include "PI_Cale.h" // °üº¬PI_Cale³õÊ¼»¯Í·ÎÄ¼ş
-#include "Task_function.h" // °üº¬Task_function³õÊ¼»¯Í·ÎÄ¼ş
-#include "Usart_RS232.h" // °üº¬Usart_RS232³õÊ¼»¯Í·ÎÄ¼ş
-#include "exti.h" // °üº¬exti³õÊ¼»¯Í·ÎÄ¼ş
-#include "stdio.h" // °üº¬±ê×¼ÊäÈëÊä³öÍ·ÎÄ¼ş
-#include <math.h> // °üº¬ÊıÑ§º¯ÊıÍ·ÎÄ¼ş
-#include "sys.h" // °üº¬ÏµÍ³Í·ÎÄ¼ş
-#include "delay.h" // °üº¬ÑÓÊ±º¯ÊıÍ·ÎÄ¼ş
-#include "usart.h" // °üº¬´®¿Úº¯ÊıÍ·ÎÄ¼ş
-#include "led.h" // °üº¬LEDº¯ÊıÍ·ÎÄ¼ş
-#include "key.h" // °üº¬°´¼üº¯ÊıÍ·ÎÄ¼ş
+#include "stm32f10x.h" // åŒ…å«STM32F10xæ ‡å‡†å¤–è®¾åº“å¤´æ–‡ä»¶
+#include "GPIO_int.h" // åŒ…å«GPIOåˆå§‹åŒ–å¤´æ–‡ä»¶
+#include "Timer.h" // åŒ…å«å®šæ—¶å™¨åˆå§‹åŒ–å¤´æ–‡ä»¶
+#include "ADC_int.h" // åŒ…å«ADCåˆå§‹åŒ–å¤´æ–‡ä»¶
+#include "Tim1_PWM.h" // åŒ…å«Tim1_PWMåˆå§‹åŒ–å¤´æ–‡ä»¶
+#include "ThreeHall.h" // åŒ…å«ThreeHallåˆå§‹åŒ–å¤´æ–‡ä»¶
+#include "IQ_math.h" // åŒ…å«IQ_mathåˆå§‹åŒ–å¤´æ–‡ä»¶
+#include "Tim4_Encoder_PWMDAC.h" // åŒ…å«Tim4_Encoder_PWMDACåˆå§‹åŒ–å¤´æ–‡ä»¶
+#include "PI_Cale.h" // åŒ…å«PI_Caleåˆå§‹åŒ–å¤´æ–‡ä»¶
+#include "Task_function.h" // åŒ…å«Task_functionåˆå§‹åŒ–å¤´æ–‡ä»¶
+#include "Usart_RS232.h" // åŒ…å«Usart_RS232åˆå§‹åŒ–å¤´æ–‡ä»¶
+#include "exti.h" // åŒ…å«extiåˆå§‹åŒ–å¤´æ–‡ä»¶
+#include "stdio.h" // åŒ…å«æ ‡å‡†è¾“å…¥è¾“å‡ºå¤´æ–‡ä»¶
+#include <math.h> // åŒ…å«æ•°å­¦å‡½æ•°å¤´æ–‡ä»¶
+#include "sys.h" // åŒ…å«ç³»ç»Ÿå¤´æ–‡ä»¶
+#include "delay.h" // åŒ…å«å»¶æ—¶å‡½æ•°å¤´æ–‡ä»¶
+#include "usart.h" // åŒ…å«ä¸²å£å‡½æ•°å¤´æ–‡ä»¶
+#include "led.h" // åŒ…å«LEDå‡½æ•°å¤´æ–‡ä»¶
+#include "key.h" // åŒ…å«æŒ‰é”®å‡½æ•°å¤´æ–‡ä»¶
 
-long numdec = 0; // ¶¨ÒåÒ»¸ö³¤ÕûĞÍ±äÁ¿numdec£¬³õÊ¼ÖµÎª0
-float syst = 0.0; // ¶¨ÒåÒ»¸ö¸¡µãĞÍ±äÁ¿syst£¬³õÊ¼ÖµÎª0.0
+long numdec = 0; // å®šä¹‰ä¸€ä¸ªé•¿æ•´å‹å˜é‡numdecï¼Œåˆå§‹å€¼ä¸º0
+float syst = 0.0; // å®šä¹‰ä¸€ä¸ªæµ®ç‚¹å‹å˜é‡systï¼Œåˆå§‹å€¼ä¸º0.0
 
 int main(void)
 {
    
-    delay_init(); // ³õÊ¼»¯ÑÓÊ±º¯Êı
-    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2); // ÉèÖÃNVICÓÅÏÈ¼¶·Ö×éÎª2
-    uart_init(115200); // ³õÊ¼»¯´®¿Ú£¬²¨ÌØÂÊÎª115200
-    LED_Init(); // ³õÊ¼»¯LED
-    KEY_Init(); // ³õÊ¼»¯°´¼ü
-    EXTIX_Init(); // ³õÊ¼»¯EXTI
+    delay_init(); // åˆå§‹åŒ–å»¶æ—¶å‡½æ•°
+    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2); // è®¾ç½®NVICä¼˜å…ˆçº§åˆ†ç»„ä¸º2
+    uart_init(115200); // åˆå§‹åŒ–ä¸²å£ï¼Œæ³¢ç‰¹ç‡ä¸º115200
+    LED_Init(); // åˆå§‹åŒ–LED
+    KEY_Init(); // åˆå§‹åŒ–æŒ‰é”®
+    EXTIX_Init(); // åˆå§‹åŒ–EXTI
 
    
 
-    while (1) // ÎŞÏŞÑ­»·
+    while (1) // æ— é™å¾ªç¯
     {
-        printf("OK\r\n"); // ´òÓ¡"OK"
-        delay_ms(1000); // ÑÓÊ±1Ãë
+        printf("OK\r\n"); // æ‰“å°"OK"
+        delay_ms(1000); // å»¶æ—¶1ç§’
     }
 }
