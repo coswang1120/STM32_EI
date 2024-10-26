@@ -2,14 +2,40 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Cortex Debug",
+      "type": "cortex-debug",
+      "request": "launch",
+      "servertype": "openocd",
+      "cwd": "${workspaceFolder}",
+      "executable": "${workspaceFolder}/Output/Externel_interupt.elf",
+      "device": "STM32F103C8",
+      //"showDevDebugOutput": "raw",
+      "configFiles": [
+        "interface/stlink.cfg",
+        "target/stm32f1x.cfg"
+      ],
+      "svdFile": "D:/Keil_v5/ARM/PACK/Keil/STM32F1xx_DFP/2.3.0/SVD/STM32F103xx.svd",
+      "serverpath": "D:/SW/openocd-20240916/bin/openocd.exe",
+      "gdbPath": "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.3 rel1/bin/arm-none-eabi-gdb.exe",
+      //"runToMain": true
+      "runToEntryPoint": "main",
+
+     // "preLaunchTask": "delay",
+      // "postLaunchCommands": [
+      //   "monitor reset halt",
+      //   "monitor flash write_image erase D:/prog/STM32/stm32f103smallplate/stm32/New_Design/UART/Project/Output/UART.bin 0x08000000",
+      //   "monitor reset init"
+      // ]
+    },
+    {
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/prog/STM32/stm32f103smallplate/stm32/New_Design/Externel_interupt/Project",
-      "program": "d:/prog/STM32/stm32f103smallplate/stm32/New_Design/Externel_interupt/Project/build/Debug/outDebug",
+      "cwd": "d:/prog/STM32/stm32f103smallplate/stm32/New_Design/UART/Project",
+      "program": "d:/prog/STM32/stm32f103smallplate/stm32/New_Design/UART/Project/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
@@ -20,5 +46,6 @@
         }
       ]
     }
+    
   ]
 }
