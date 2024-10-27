@@ -7,7 +7,7 @@
       "request": "launch",
       "servertype": "openocd",
       "cwd": "${workspaceFolder}",
-      "executable": "${workspaceFolder}/Output/Externel_interupt.elf",
+      "executable": "${workspaceFolder}/Output/UART.elf",
       "device": "STM32F103C8",
       //"showDevDebugOutput": "raw",
       "configFiles": [
